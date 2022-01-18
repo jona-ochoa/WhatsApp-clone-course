@@ -3,7 +3,7 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { Octicons, MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
+import { Octicons, MaterialCommunityIcons, FontAwesome, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -19,6 +19,8 @@ import ChatScreen from '../screens/ChatScreen';
 import CameraScreen from '../screens/CameraScreen';
 import { RootStackParamList, MainTabParamList } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import ChatRoomScreen from '../screens/ChatRoomScreen';
+import ContactsScreen from '../screens/ContactsScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -56,12 +58,30 @@ function RootNavigator() {
         options={{
           title:"WhatsApp",
           headerRight: () => (
-            <View style={{flexDirection: 'row', justifyContent: 'space-between', width: 60, marginRight: 10}}>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between', width: 60, marginRight: 20}}>
               <Octicons name="search" size={22} color="white" />
               <MaterialCommunityIcons name="dots-vertical" size={22} color="white" />
             </View>
           )
         }}
+      />
+       <Stack.Screen 
+        name="ChatRoom" 
+        component={ChatRoomScreen} 
+        options={({route}) => ({
+          title: route.params.name,
+          headerRight: () => (
+            <View style={{flexDirection: 'row', justifyContent: 'space-between', width: 100, marginRight: 10}}>
+              <FontAwesome5 name='video' size={22} color={'white'} />
+              <MaterialIcons name='call' size={22} color={'white'} />
+              <MaterialCommunityIcons name='dots-vertical' size={22} color={'white'} />
+            </View>
+        )
+        })}
+      />
+      <Stack.Screen 
+        name="Contacts" 
+        component={ContactsScreen}  
       />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>
@@ -89,10 +109,10 @@ function MainTabNavigator() {
             backgroundColor: Colors[colorScheme].background,
             height: 4,
           },
-          labelStyle:{
-            fontWeight: 'bold',
-          },
-          showIcon: true,
+        labelStyle:{
+          fontWeight: 'bold',
+        },
+        showIcon: true,
       }}>
       <MainTab.Screen
         name="Camera"

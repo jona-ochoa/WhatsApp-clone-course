@@ -19,19 +19,14 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: '#000',
     },
-    lastMessage: {
-        fontSize: 14,
-        color: 'grey',
-    },
-    time: {
-        fontSize: 14,
-        color: 'grey',
-    },
     avatar: {
         width: 50,
         height: 50,
         marginRight: 10,
         borderRadius: 30,
+    },
+    status:{
+        color: 'grey',
     },
 })
 
