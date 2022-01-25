@@ -112,7 +112,6 @@ function MainTabNavigator() {
         labelStyle:{
           fontWeight: 'bold',
         },
-        showIcon: true,
       }}>
       <MainTab.Screen
         name="Camera"
